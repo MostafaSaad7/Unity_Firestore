@@ -56,7 +56,7 @@ public class DataBridge : MonoBehaviour
 
     public void loadData()
     {
-
+        var firestore = FirebaseFirestore.DefaultInstance;
         firestore.Document(childPath).GetSnapshotAsync().ContinueWithOnMainThread((task =>
         {
             Assert.IsNull(task.Exception);
