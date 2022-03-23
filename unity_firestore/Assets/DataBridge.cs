@@ -54,20 +54,20 @@ public class DataBridge : MonoBehaviour
     }
 
 
-    // public void loadData()
-    // {
+    public void loadData()
+    {
 
-    //     firestore.Document(childPath).GetSnapshotAsync().ContinueWithOnMainThread((task =>
-    //     {
-    //         Assert.IsNull(task.Exception);
+        firestore.Document(childPath).GetSnapshotAsync().ContinueWithOnMainThread((task =>
+        {
+            Assert.IsNull(task.Exception);
 
-    //         var childData = task.Result.ConvertTo<Child>();
-    //         nameFeild.text = childData.name;
-    //         pass.text = childData.password;
+            var childData = task.Result.ConvertTo<Child>();
+            nameFeild.text = childData.name;
+            pass.text = childData.password;
 
-    //         print("Name  "+ childData.name);
-    //         print("pass  "+ childData.name);
-    //     }
-    //     ));
-    // }
+            print("Name  "+ childData.name);
+            print("pass  "+ childData.name);
+        }
+        ));
+    }
 }
