@@ -23,12 +23,12 @@ public class DataBridge : MonoBehaviour
     void Start()
     {
          var firestore = FirebaseFirestore.DefaultInstance;
-            listenerRegistration =firestore.Document(childPath).Listen(snapshot=>{
-            var childData = snapshot.ConvertTo<Child>();
-            namef.text = childData.name;
-            passf.text = childData.password;
+            // listenerRegistration =firestore.Document(childPath).Listen(snapshot=>{
+            // var childData = snapshot.ConvertTo<Child>();
+            // namef.text = childData.name;
+            // passf.text = childData.password;
 
-                 });
+            //      });
 
 
     }
@@ -50,13 +50,18 @@ public class DataBridge : MonoBehaviour
         name = nameFeild.text,
         password = pass.text
         };
-        firestore.Document(childPath).SetAsync(childData);
+        string parentid="07775000";
+        //firestore.Document($"children/{parentid}/childs/3").SetAsync(childData);
+        firestore.Collection("children").Document("parentid").Collection("childs").Document().SetAsync(childData);
+
     }
 
 
     public void loadData()
     {
         var firestore = FirebaseFirestore.DefaultInstance;
+
+        //firestore.Collection().Document().Collection().GetSnapshotAsync();
         firestore.Document(childPath).GetSnapshotAsync().ContinueWithOnMainThread((task =>
         {
             Assert.IsNull(task.Exception);
